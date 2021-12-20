@@ -1,5 +1,5 @@
 pipeline {
-	agent { label 'hwscript' }
+	agent any
     stages {
        stage('build') {
             steps {	
