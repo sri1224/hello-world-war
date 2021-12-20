@@ -1,6 +1,12 @@
 pipeline {
 	agent {'java'}
     stages {
+	    stage('checkout') {
+            steps {	
+		
+                sh 'git clone https://github.com/lohitesh/hello-world-war/'
+            }
+        }
        stage('build') {
             steps {	
 	sh 'mvn clean package'	
