@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+	agent { label 'hwscript' }
     stages {
         stage('checkout') {
             steps {	
