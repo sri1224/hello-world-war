@@ -1,5 +1,5 @@
 pipeline {
-	agent any
+	agent {'java'}
     stages {
        stage('build') {
             steps {	
@@ -8,7 +8,7 @@ pipeline {
         }
 	 stage('copy') {
             steps {	
-	sh 'cp /var/lib/jenkins/workspace/hello/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.56/webapps'	
+	sh 'cp /home/slave-5/jenkins/workspace/hello1/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.56/webapps/'	
               }
         }    
     }
