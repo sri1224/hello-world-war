@@ -9,7 +9,7 @@ pipeline {
         }
 	 stage('copy') {
             steps {	
-	sh 'cp /home/slave-5/jenkins/workspace/hello1/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.56/webapps/'	
+	sh 'cp /home/slave-5/jenkins/workspace/hello1/target/hello-world-war-1.0.0.war /opt/tomcat9/webapps/'	
               }
         }    
     }
