@@ -1,16 +1,31 @@
 pipeline {
-	agent { label 'java' }
+	agent { label 'tom' }
     stages {
 	    
-       stage('build') {
-            steps {	
-	sh 'mvn clean package'	
+       stage('checkout') {
+            steps {
+                sh 'sudo rm -rf hello-world-war'
+	sh 'git clone https://github.com/akshayvdes/hello-world-war.git'	
               }
         }
-	 stage('copy') {
-            steps {	
-	sh 'cp /home/slave-5/jenkins/workspace/hello1/target/hello-world-war-1.0.0.war /opt/tomcat9/webapps/'	
-              }
-        }    
+	 stage('build') {
+	
+            steps {
+                dir('hello-world-war'){
+                  sh 'pwd'
+                sh 'ls'
+            
+                sh 'docker build -t tomcat:ver1.1 .'  
+                }
+              
+                
+            }
+	 }
+	 stage('deploy'){
+	     steps{
+	        sh 'docker rm -f mytomcat'
+	         sh 'docker run -d --name mytomcat -p 7777:8080 tomcat:ver1.1'
+	     }
+	 }
     }
 }
