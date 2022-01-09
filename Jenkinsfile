@@ -24,7 +24,7 @@ pipeline {
 		    agent { label 'd-1' }
 	     steps{
 	        sh 'docker tag tomcat:ver1.1 sri1224/test1:1.0 '
-	         sh 'docker push sri1224/test:1.0'
+	         sh 'docker push sri1224/test1:1.0'
 	     }
 	 }
 	 stage('deploy'){
