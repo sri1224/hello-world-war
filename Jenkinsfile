@@ -1,11 +1,11 @@
 pipeline {
-	agent { label 'dj' }
+	agent { label 'd-1' }
     stages {
 	    
        stage('checkout') {
             steps {
                 sh 'sudo rm -rf hello-world-war'
-	sh 'git clone https://github.com/Urssharath/hello-world-war.git'	
+	sh 'git clone https://github.com/sri1224/hello-world-war.git'	
               }
         }
 	 stage('build') {
@@ -23,8 +23,8 @@ pipeline {
 	 }
 	 stage('deploy'){
 	     steps{
-	        sh 'docker rm -f mytomcat'
-	         sh 'docker run -d --name mytomcat -p 7777:8080 tomcat:ver1.1'
+	        sh 'docker rm -f tom1'
+	         sh 'docker run -d --name tom1 -p 8085:8080 tomcat:ver1.1'
 	     }
 	 }
     }
