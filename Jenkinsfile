@@ -17,14 +17,18 @@ pipeline {
             
                 sh 'docker build -t tomcat:ver1.1 .'  
                 }
-              
-                
             }
+	 }
+	    stage('push'){
+	     steps{
+	        sh 'docker tag tomcat:ver1.1 sri1224/test1:1.0 '
+	         sh 'docker push sri1224/test:1.0'
+	     }
 	 }
 	 stage('deploy'){
 	     steps{
 	        sh 'docker rm -f tom1'
-	         sh 'docker run -d --name tom1 -p 8085:8080 tomcat:ver1.1'
+	         sh 'docker run -d --name tom1 -p 8085:8080 sri1224/test1:1.0'
 	     }
 	 }
     }
