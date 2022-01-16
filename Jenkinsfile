@@ -15,15 +15,14 @@ pipeline {
                 dir('hello-world-war'){
                   sh 'pwd'
                 sh 'ls'
-            
-                sh 'docker build -t tomcat:${BUILD_NUMBER} .'  
+                sh 'docker build -t tomcat:v1.0 .'  
                 }
             }
 	 }
 	    stage('push'){
 		    agent { label 'd-1' }
 	     steps{
-	        sh 'docker tag tomcat:${BUILD_NUMBER} sri1224/test1:${BUILD_NUMBER} '
+	        sh 'docker tag tomcat:v1.0 sri1224/test1:${BUILD_NUMBER} '
 	         sh 'docker push sri1224/test1:${BUILD_NUMBER}'
 	     }
 	 }
