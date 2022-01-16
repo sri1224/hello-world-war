@@ -16,22 +16,22 @@ pipeline {
                   sh 'pwd'
                 sh 'ls'
             
-                sh 'docker build -t tomcat:ver1.1 .'  
+                sh 'docker build -t tomcat:${BUILD_NUMBER} .'  
                 }
             }
 	 }
 	    stage('push'){
 		    agent { label 'd-1' }
 	     steps{
-	        sh 'docker tag tomcat:ver1.1 sri1224/test1:1.0 '
-	         sh 'docker push sri1224/test1:1.0'
+	        sh 'docker tag tomcat:${BUILD_NUMBER} sri1224/test1:${BUILD_NUMBER} '
+	         sh 'docker push sri1224/test1:${BUILD_NUMBER}'
 	     }
 	 }
 	 stage('deploy'){
 		 agent { label 'd-2' }
 	     steps{
 	        sh 'docker rm -f tom1'
-	         sh 'docker run -d --name tom1 -p 8085:8080 sri1224/test1:1.0'
+	         sh 'docker run -d --name tom1 -p 8090:8080 sri1224/test1:${BUILD_NUMBER}'
 	     }
 	 }
     }
